@@ -51,7 +51,6 @@ def get_batch_matrix(data):
 
 
 def plot(data):
-    data = data()
     y_val = np.average(data, axis=0)
     y_std = np.std(data, axis=0)
 
@@ -63,5 +62,24 @@ def plot(data):
     ax.set_xlabel('Harmonics')
     ax.legend(['$f=220$', '$f=1000$'])
     ax.set_title('JND vs tone harmonics')
+
+    plt.show()
+
+
+def analytics_sex(meta):
+    res = np.unique(meta[:, 0], return_counts=True)
+    plt.pie(res[1], labels=res[0], autopct='%1.1f%%')
+
+
+def analytics_exp(meta):
+    res = np.unique(meta[:, 2], return_counts=True)
+    x = np.array([1, 2, 3, 0, 4])
+
+    fig, ax = plt.subplots()
+    ax.bar(x, res[1])
+    plt.xticks(x, res[0])
+    ax.set_ylabel('Number of people')
+    ax.set_xlabel('Musical experience (years)')
+    ax.set_title('Distribution over musical experience')
 
     plt.show()
